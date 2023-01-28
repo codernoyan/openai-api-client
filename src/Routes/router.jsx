@@ -2,7 +2,9 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../Components/Home';
+import Login from '../Components/Login';
 import NotFound from '../Components/NotFound';
+import Register from '../Components/Register';
 import Main from '../Layouts/Main';
 
 const router = createBrowserRouter([
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/register',
+        element: <Register />,
       },
     ],
   },

@@ -16,8 +16,16 @@ export default function Navbar() {
       </li>
       <li role="none" className="flex items-stretch">
         <Link
-          className="flex items-center gap-2 py-4 text-cyan-500 transition-colors duration-300 hover:text-cyan-600 lg:px-8"
+          className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:px-8"
           to="/"
+        >
+          <span>GPT</span>
+        </Link>
+      </li>
+      <li role="none" className="flex items-stretch">
+        <Link
+          className="flex items-center gap-2 py-4 text-cyan-500 transition-colors duration-300 hover:text-cyan-600 lg:px-8 font-bold"
+          to="/login"
         >
           <span>Login</span>
         </Link>
@@ -25,7 +33,7 @@ export default function Navbar() {
       <li role="none" className="flex items-stretch">
         <Link
           className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:pl-8 lg:pr-0"
-          to="/"
+          to="/register"
         >
           <span>Register</span>
         </Link>
@@ -46,7 +54,7 @@ export default function Navbar() {
             {/*      <!-- Brand logo --> */}
             <Link
               to="/"
-              className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1 font-siliguri font-semibold text-white"
+              className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1 font-siliguri font-bold text-white"
             >
               OpenAI
               {' '}
@@ -85,7 +93,7 @@ export default function Navbar() {
             <ul
               role="menubar"
               aria-label="Select page"
-              className={`absolute top-0 left-0 z-[-1] h-[28.5rem] w-full justify-center overflow-hidden  overflow-y-auto overscroll-contain bg-dark/80 px-2 pb-12 pt-24 font-medium transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0  lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0  lg:pt-0 lg:opacity-100 font-siliguri text-white ${isToggleOpen
+              className={`absolute top-0 left-0 z-[-1] h-[28.5rem] w-full bg-white/5 justify-center overflow-hidden  overflow-y-auto overscroll-contain bg-dark/80 px-2 pb-12 pt-24 font-medium transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0  lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0  lg:pt-0 lg:opacity-100 font-siliguri text-white ${isToggleOpen
                 ? 'visible opacity-100 backdrop-blur-sm'
                 : 'invisible opacity-0'
               }`}
