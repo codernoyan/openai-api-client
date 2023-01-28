@@ -17,9 +17,9 @@ export default function Navbar() {
       <li role="none" className="flex items-stretch">
         <Link
           className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:px-8"
-          to="/"
+          to="/open-chat"
         >
-          <span>GPT</span>
+          <span>OpenChat</span>
         </Link>
       </li>
       <li role="none" className="flex items-stretch">
