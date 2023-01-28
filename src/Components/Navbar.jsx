@@ -41,25 +41,19 @@ export default function Navbar() {
     </>
   );
   return (
-
     <>
       {/* <!-- Component: Basic Navbar --> */}
       <header className="relative z-20 w-full shadow-slate-700/5 after:absolute after:top-full after:left-0 after:z-10 after:block after:h-px after:w-full lg:backdrop-blur-sm lg:after:hidden">
         <div className="relative mx-auto max-w-full px-0 lg:max-w-5xl xl:max-w-7xl 2xl:max-w-[96rem]">
-          <nav
-            aria-label="main navigation"
-            className="flex h-[5.5rem] items-stretch justify-between font-medium text-slate-700"
-            role="navigation"
-          >
+          <nav className="flex h-[5.5rem] items-stretch justify-between font-medium text-slate-700">
             {/*      <!-- Brand logo --> */}
-            <Link
-              to="/"
-              className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1 font-siliguri font-bold text-white"
-            >
-              OpenAI
-              {' '}
-              <span className="text-cyan-500">API</span>
-            </Link>
+            <div>
+              <Link to="/" className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1 font-siliguri font-bold text-white">
+                OpenAI
+                {' '}
+                <span className="text-cyan-500">API</span>
+              </Link>
+            </div>
             {/*      <!-- Mobile trigger --> */}
             <button
               type="button"
@@ -93,9 +87,10 @@ export default function Navbar() {
             <ul
               role="menubar"
               aria-label="Select page"
-              className={`absolute top-0 left-0 z-[-1] h-[28.5rem] w-full bg-white/5 justify-center overflow-hidden  overflow-y-auto overscroll-contain bg-dark/80 px-2 pb-12 pt-24 font-medium transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0  lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0  lg:pt-0 lg:opacity-100 font-siliguri text-white ${isToggleOpen
-                ? 'visible opacity-100 backdrop-blur-sm'
-                : 'invisible opacity-0'
+              className={`absolute top-0 left-0 z-[-1] h-[28.5rem] w-full bg-white/5 justify-center overflow-hidden  overflow-y-auto overscroll-contain bg-dark/80 px-2 pb-12 pt-24 font-medium transition-[opacity,visibility] duration-300 lg:visible lg:relative lg:top-0  lg:z-0 lg:flex lg:h-full lg:w-auto lg:items-stretch lg:overflow-visible lg:bg-white/0 lg:px-0 lg:py-0  lg:pt-0 lg:opacity-100 font-siliguri text-white ${
+                isToggleOpen
+                  ? 'visible opacity-100 backdrop-blur-sm'
+                  : 'invisible opacity-0'
               }`}
             >
               {menus}
