@@ -1,10 +1,11 @@
 /* eslint-disable react/react-in-jsx-scope */
-import './App.css';
+import { RouterProvider } from 'react-router-dom';
+import router from './Routes/router';
 
 function App() {
   return (
-    <div className="App">
-      <h1>hello open ai api</h1>
+    <div>
+      <RouterProvider router={router} />
     </div>
   );
 }
