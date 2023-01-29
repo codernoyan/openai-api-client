@@ -1,9 +1,40 @@
 /* eslint-disable linebreak-style */
-import React, { useState } from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthProvider } from '../contexts/AuthContext/AuthContext';
+import Spinner from './Spinner';
 
 export default function Navbar() {
+  const {
+    user, logOutUser, loading, setLoading,
+  } = useContext(AuthProvider);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+
+  // log out logged in user
+  const handleLogOutUser = () => {
+    logOutUser()
+      .then(() => {
+        setLoading(false);
+        toast.success('Login Successful.', {
+          style: {
+            border: '1px solid #713200',
+            padding: '12px',
+            color: '#03001C',
+          },
+          iconTheme: {
+            primary: '#06B6D4',
+            secondary: '#FFFAEE',
+          },
+        });
+      }).catch((err) => {
+        setLoading(false);
+        console.log(err);
+        toast.error(err.message);
+      });
+  };
+
   const menus = (
     <>
       <li role="none" className="flex items-stretch">
@@ -14,32 +45,60 @@ export default function Navbar() {
           <span>Home</span>
         </Link>
       </li>
-      <li role="none" className="flex items-stretch">
-        <Link
-          className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:px-8"
-          to="/open-chat"
-        >
-          <span>OpenChat</span>
-        </Link>
-      </li>
-      <li role="none" className="flex items-stretch">
-        <Link
-          className="flex items-center gap-2 py-4 text-cyan-500 transition-colors duration-300 hover:text-cyan-600 lg:px-8 font-bold"
-          to="/login"
-        >
-          <span>Login</span>
-        </Link>
-      </li>
-      <li role="none" className="flex items-stretch">
-        <Link
-          className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:pl-8 lg:pr-0"
-          to="/register"
-        >
-          <span>Register</span>
-        </Link>
-      </li>
+      {
+        user?.uid && (
+        <li role="none" className="flex items-stretch">
+          <Link
+            className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:px-8"
+            to="/open-chat"
+          >
+            <span>OpenChat</span>
+          </Link>
+        </li>
+        )
+      }
+      {
+        !user?.uid
+          ? (
+            <>
+              <li role="none" className="flex items-stretch">
+                <Link
+                  className="flex items-center gap-2 py-4 text-cyan-500 transition-colors duration-300 hover:text-cyan-600 lg:px-8 font-bold"
+                  to="/login"
+                >
+                  <span>Login</span>
+                </Link>
+              </li>
+              <li role="none" className="flex items-stretch">
+                <Link
+                  className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:pl-8 lg:pr-0"
+                  to="/register"
+                >
+                  <span>Register</span>
+                </Link>
+              </li>
+            </>
+          )
+          : (
+            <li role="none" className="flex items-stretch">
+              <button
+                onClick={handleLogOutUser}
+                type="button"
+                className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-cyan-500 lg:pl-8 lg:pr-0"
+              >
+                <span>Logout</span>
+              </button>
+            </li>
+          )
+      }
+
     </>
   );
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       {/* <!-- Component: Basic Navbar --> */}

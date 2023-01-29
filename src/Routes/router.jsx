@@ -8,6 +8,7 @@ import NotFound from '../Components/NotFound';
 import Register from '../Components/Register';
 import Spinner from '../Components/Spinner';
 import Main from '../Layouts/Main';
+import PrivateRoute from './PrivateRoute';
 
 const OpenChat = React.lazy(() => import('../Components/OpenChat'));
 
@@ -25,7 +26,9 @@ const router = createBrowserRouter([
         path: '/open-chat',
         element: (
           <React.Suspense fallback={<Spinner />}>
-            <OpenChat />
+            <PrivateRoute>
+              <OpenChat />
+            </PrivateRoute>
           </React.Suspense>
         ),
       },

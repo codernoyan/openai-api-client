@@ -2,12 +2,19 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../contexts/AuthContext/AuthContext';
 import Spinner from './Spinner';
 
 export default function Login() {
-  const { loginUser, loading, setLoading } = useContext(AuthProvider);
+  const {
+    loginUser, loading, setLoading, googleAuth,
+  } = useContext(AuthProvider);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || '/';
+
   // login
   const handleLogin = (e) => {
     e.preventDefault();
@@ -33,9 +40,37 @@ export default function Login() {
           },
         });
         setLoading(false);
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((err) => {
+        setLoading(false);
+        console.log(err);
+        toast.error(err.message);
+      });
+  };
+
+  // login with google
+  const handleGoogleLogin = () => {
+    googleAuth()
+      .then((result) => {
+        const { user } = result;
+        // toast
+        toast.success('Login Successful.', {
+          style: {
+            border: '1px solid #713200',
+            padding: '12px',
+            color: '#03001C',
+          },
+          iconTheme: {
+            primary: '#06B6D4',
+            secondary: '#FFFAEE',
+          },
+        });
+        setLoading(false);
+        navigate(from, { replace: true });
+        console.log(user);
+      }).catch((err) => {
         setLoading(false);
         console.log(err);
         toast.error(err.message);
@@ -82,7 +117,7 @@ export default function Login() {
           </form>
           {/* google login button */}
           <div className="text-center">
-            <button className="font-semibold hover:text-cyan-400 transition-colors" type="submit">Login With Google</button>
+            <button onClick={handleGoogleLogin} className="font-semibold hover:text-cyan-400 transition-colors" type="submit">Login With Google</button>
           </div>
         </div>
         <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">

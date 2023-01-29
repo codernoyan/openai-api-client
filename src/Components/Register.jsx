@@ -2,12 +2,16 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useContext } from 'react';
 import { toast } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthProvider } from '../contexts/AuthContext/AuthContext';
 import Spinner from './Spinner';
 
 export default function Register() {
-  const { createUser, loading, setLoading } = useContext(AuthProvider);
+  const {
+    createUser, loading, setLoading, googleAuth,
+  } = useContext(AuthProvider);
+
+  const navigate = useNavigate();
   // Register
   const handleRegister = (e) => {
     e.preventDefault();
@@ -32,6 +36,33 @@ export default function Register() {
           },
         });
         setLoading(false);
+        navigate('/');
+        console.log(user);
+      }).catch((err) => {
+        setLoading(false);
+        console.log(err);
+        toast.error(err.message);
+      });
+  };
+
+  const handleGoogleRegister = () => {
+    googleAuth()
+      .then((result) => {
+        const { user } = result;
+        // toast
+        toast.success('Login Successful.', {
+          style: {
+            border: '1px solid #713200',
+            padding: '12px',
+            color: '#03001C',
+          },
+          iconTheme: {
+            primary: '#06B6D4',
+            secondary: '#FFFAEE',
+          },
+        });
+        setLoading(false);
+        navigate('/');
         console.log(user);
       }).catch((err) => {
         setLoading(false);
@@ -74,7 +105,7 @@ export default function Register() {
             </div>
             <div>
               <div className="my-4">
-                <button className="font-semibold bg-cyan-500 hover:bg-cyan-700 transition-colors w-full py-2 rounded-sm" type="submit">Register</button>
+                <button onClick={handleGoogleRegister} className="font-semibold bg-cyan-500 hover:bg-cyan-700 transition-colors w-full py-2 rounded-sm" type="submit">Register</button>
               </div>
             </div>
           </form>
