@@ -105,13 +105,13 @@ export default function Register() {
             </div>
             <div>
               <div className="my-4">
-                <button onClick={handleGoogleRegister} className="font-semibold bg-cyan-500 hover:bg-cyan-700 transition-colors w-full py-2 rounded-sm" type="submit">Register</button>
+                <button className="font-semibold bg-cyan-500 hover:bg-cyan-700 transition-colors w-full py-2 rounded-sm" type="submit">Register</button>
               </div>
             </div>
           </form>
           {/* google register button */}
           <div className="text-center">
-            <button className="font-semibold hover:text-cyan-400 transition-colors" type="submit">Register With Google</button>
+            <button onClick={handleGoogleRegister} className="font-semibold hover:text-cyan-400 transition-colors" type="submit">Register With Google</button>
           </div>
         </div>
         <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
