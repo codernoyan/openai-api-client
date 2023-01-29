@@ -51,9 +51,7 @@ export default function OpenChat() {
           <textarea
             className="w-full bg-white text-black px-2 py-2"
             name="message"
-            value={`${
-              chatResponse || ''
-            }`}
+            value={!chatResponse ? '' : `${chatResponse}...`}
             id=""
             cols="30"
             rows="8"
