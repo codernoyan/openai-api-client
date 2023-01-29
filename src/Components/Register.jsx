@@ -1,8 +1,13 @@
 /* eslint-disable linebreak-style */
-import React from 'react';
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthProvider } from '../contexts/AuthContext/AuthContext';
+import Spinner from './Spinner';
 
 export default function Register() {
+  const { createUser, loading, setLoading } = useContext(AuthProvider);
   // Register
   const handleRegister = (e) => {
     e.preventDefault();
@@ -10,7 +15,35 @@ export default function Register() {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+
+    // create user with email password
+    createUser(email, password)
+      .then((result) => {
+        const { user } = result;
+        toast.success('Login Successful.', {
+          style: {
+            border: '1px solid #713200',
+            padding: '12px',
+            color: '#03001C',
+          },
+          iconTheme: {
+            primary: '#06B6D4',
+            secondary: '#FFFAEE',
+          },
+        });
+        setLoading(false);
+        console.log(user);
+      }).catch((err) => {
+        setLoading(false);
+        console.log(err);
+        toast.error(err.message);
+      });
   };
+
+  if (loading) {
+    return <Spinner />;
+  }
+
   return (
     <section>
       <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">

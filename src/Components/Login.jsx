@@ -36,6 +36,7 @@ export default function Login() {
         console.log(user);
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
         toast.error(err.message);
       });
