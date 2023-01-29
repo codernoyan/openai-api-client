@@ -1,12 +1,15 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/react-in-jsx-scope */
+import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../Components/Home';
 import Login from '../Components/Login';
 import NotFound from '../Components/NotFound';
-import OpenChat from '../Components/OpenChat';
 import Register from '../Components/Register';
+import Spinner from '../Components/Spinner';
 import Main from '../Layouts/Main';
+
+const OpenChat = React.lazy(() => import('../Components/OpenChat'));
 
 const router = createBrowserRouter([
   {
@@ -20,7 +23,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/open-chat',
-        element: <OpenChat />,
+        element: (
+          <React.Suspense fallback={<Spinner />}>
+            <OpenChat />
+          </React.Suspense>
+        ),
       },
       {
         path: '/login',
