@@ -77,15 +77,15 @@ export default function Register() {
 
   return (
     <section>
-      <div className="w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <div className="w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-md bg-gray-800">
         <div className="px-6 py-4">
-          <h3 className="mt-3 text-xl font-medium text-center text-gray-600 dark:text-gray-200">
+          <h3 className="mt-3 text-xl font-medium text-center dark:text-gray-200">
             Register
           </h3>
           <form onSubmit={handleRegister}>
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-100 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 border rounded-lg bg-gray-800 dark:border-gray-600 dark:placeholder-gray-100 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 type="email"
                 placeholder="Email Address"
                 aria-label="Email Address"
@@ -95,7 +95,7 @@ export default function Register() {
             </div>
             <div className="w-full mt-4">
               <input
-                className="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 bg-white border rounded-lg dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-100 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
+                className="block w-full px-4 py-2 mt-2 text-white placeholder-gray-200 border rounded-lg bg-gray-800 dark:border-gray-600 dark:placeholder-gray-100 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring focus:ring-blue-300"
                 type="password"
                 placeholder="Password"
                 aria-label="Password"
@@ -114,14 +114,14 @@ export default function Register() {
             <button onClick={handleGoogleRegister} className="font-semibold hover:text-cyan-400 transition-colors" type="submit">Register With Google</button>
           </div>
         </div>
-        <div className="flex items-center justify-center py-4 text-center bg-gray-50 dark:bg-gray-700">
-          <span className="text-sm text-gray-600 dark:text-gray-200">
+        <div className="flex items-center justify-center py-4 text-center bg-gray-700">
+          <span className="text-sm text-gray-200">
             Already have an account?
             {' '}
           </span>
           <Link
             to="/login"
-            className="mx-2 text-sm font-bold text-cyan-200-500 dark:text-cyan-400 hover:underline"
+            className="mx-2 text-sm font-bold text-cyan-500 dark:text-cyan-400 hover:underline"
           >
             Login
           </Link>
